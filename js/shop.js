@@ -1,20 +1,29 @@
 import { products } from "./data.js";
 
-// => Reminder, it's extremely important that you debug your code. 
-// ** It will save you a lot of time and frustration!
-// ** You'll understand the code better than with console.log(), and you'll also find errors faster. 
-// ** Don't hesitate to seek help from your peers or your mentor if you still struggle with debugging.
-
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 const cart = [];
-
 const total = 0;
+
+const buttons = [...document.getElementsByClassName('add-to-cart')]; 
 
 // Exercise 1
 const buy = (id) => {
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array
+    let productToBuy = products.find((product) => product.id === id);
+    let productOnCart = cart.find((product)=> product.id === productToBuy.id);   
+    
+    productOnCart!=undefined?
+        (productOnCart.quantity++)
+        :(cart.push({...productToBuy, quantity: 1}));   
+    console.log(cart);
 }
+
+const handleProductAddition = (event) => {
+    let productId = Number(event.target.getAttribute('data-product-id'));
+    buy(productId);
+}
+buttons.forEach((button)=>{
+    button.addEventListener("click", handleProductAddition);
+});
 
 // Exercise 2
 const cleanCart = () =>  {
