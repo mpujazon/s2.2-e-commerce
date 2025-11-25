@@ -6,6 +6,7 @@ let total = 0;
 
 const buttons = [...document.getElementsByClassName('add-to-cart')]; 
 const cleanCartButton = document.getElementById('clean-cart');
+const countProduct = document.getElementById('count_product');
 
 
 // Exercise 1
@@ -16,6 +17,7 @@ const buy = (id) => {
     productOnCart!=undefined?
         (productOnCart.quantity++)
         :(cart.push({...productToBuy, quantity: 1}));
+    countProduct.textContent = cart.length;
     applyPromotionsCart();
     calculateTotal();
 }
@@ -31,6 +33,7 @@ buttons.forEach((button)=>{
 const cleanCart = () =>  {
     cart.length = 0;
     total = 0;
+    countProduct.textContent = 0;
     printCart();
 }
 cleanCartButton.addEventListener('click', cleanCart);
@@ -58,8 +61,6 @@ const discountProductPrice = (product) => {
     if (product.quantity >= product.offer.number){
         product.subtotalWithDiscount = (product.price - product.price/100*product.offer.percent) * product.quantity;
     }
-    console.log(product);
-    
 }
 
 // Exercise 5
