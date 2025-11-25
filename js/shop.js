@@ -18,8 +18,6 @@ const buy = (id) => {
         :(cart.push({...productToBuy, quantity: 1}));
     applyPromotionsCart();
     calculateTotal();
-    console.log(cart);   
-
 }
 const handleProductAddition = (event) => {
     let productId = Number(event.target.getAttribute('data-product-id'));
@@ -32,35 +30,66 @@ buttons.forEach((button)=>{
 // Exercise 2
 const cleanCart = () =>  {
     cart.length = 0;
+    total = 0;
+    printCart();
 }
 cleanCartButton.addEventListener('click', cleanCart);
 
 // Exercise 3
 const calculateTotal = () =>  {
-    total = cart.reduce((acc, curr)=>acc+curr.price*curr.quantity,0);
+    total = 0;
+    cart.forEach((product)=>{
+        let productSubtotal = product.subtotalWithDiscount || product.price*product.quantity;
+        total += productSubtotal;
+    })
+    console.log(total);
 }
 
 // Exercise 4
 const applyPromotionsCart = () =>  {
     cart.forEach(product => {
         if(product.offer) discountProductPrice(product);
-        console.log(`Product price: ${product.price}`);
     });
 }
 
 const discountProductPrice = (product) => {
     let originalProduct = products.find((originalProduct)=>originalProduct.id === product.id);
-    let discountApplied = product.price !== originalProduct.price;
 
-    if (product.quantity >= product.offer.number && !discountApplied){
-        product.price -= product.price/100*product.offer.percent;   
+    if (product.quantity >= product.offer.number){
+        product.subtotalWithDiscount = (product.price - product.price/100*product.offer.percent) * product.quantity;
     }
+    console.log(product);
+    
 }
 
 // Exercise 5
+const cartButton = document.querySelector('.cart-button');
+const totalPrice = document.getElementById('total_price');
+const cartList = document.getElementById('cart_list');
+
 const printCart = () => {
-    // Fill the shopping cart modal manipulating the shopping cart dom
+    cartList.innerHTML = '';
+    cart.forEach((product) => {
+        let productRow = document.createElement('tr');
+        productRow.innerHTML = `
+            <tr>
+                <th scope="row">${capitalizeFirstLetter(product.name)}</th>
+                <td>$${(product.price)}</td>
+                <td>${product.quantity}</td>
+                <td>$${(product.subtotalWithDiscount)?.toFixed(2) || (product.price * product.quantity).toFixed(2)}</td>
+            </tr>
+        `;        
+        cartList.appendChild(productRow);
+    });
+    totalPrice.innerHTML = total.toFixed(2);
 }
+cartButton.addEventListener('click', printCart);
+
+
+const capitalizeFirstLetter = (val)=>  {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}
+
 
 
 // ** Nivell II **
