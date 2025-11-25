@@ -5,6 +5,8 @@ const cart = [];
 const total = 0;
 
 const buttons = [...document.getElementsByClassName('add-to-cart')]; 
+const cleanCartButton = document.getElementById('clean-cart');
+
 
 // Exercise 1
 const buy = (id) => {
@@ -16,7 +18,6 @@ const buy = (id) => {
         :(cart.push({...productToBuy, quantity: 1}));   
     console.log(cart);
 }
-
 const handleProductAddition = (event) => {
     let productId = Number(event.target.getAttribute('data-product-id'));
     buy(productId);
@@ -27,8 +28,9 @@ buttons.forEach((button)=>{
 
 // Exercise 2
 const cleanCart = () =>  {
-
+    cart.length = 0;
 }
+cleanCartButton.addEventListener('click', cleanCart);
 
 // Exercise 3
 const calculateTotal = () =>  {
