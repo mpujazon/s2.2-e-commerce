@@ -44,8 +44,7 @@ const calculateTotal = () =>  {
     cart.forEach((product)=>{
         let productSubtotal = product.subtotalWithDiscount || product.price*product.quantity;
         total += productSubtotal;
-    })
-    console.log(total);
+    });
 }
 
 // Exercise 4
