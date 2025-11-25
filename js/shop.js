@@ -2,7 +2,7 @@ import { products } from "./data.js";
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
 const cart = [];
-const total = 0;
+let total = 0;
 
 const buttons = [...document.getElementsByClassName('add-to-cart')]; 
 const cleanCartButton = document.getElementById('clean-cart');
@@ -15,8 +15,8 @@ const buy = (id) => {
     
     productOnCart!=undefined?
         (productOnCart.quantity++)
-        :(cart.push({...productToBuy, quantity: 1}));   
-    console.log(cart);
+        :(cart.push({...productToBuy, quantity: 1}));
+        calculateTotal();
 }
 const handleProductAddition = (event) => {
     let productId = Number(event.target.getAttribute('data-product-id'));
@@ -34,7 +34,7 @@ cleanCartButton.addEventListener('click', cleanCart);
 
 // Exercise 3
 const calculateTotal = () =>  {
-    // Calculate total price of the cart using the "cartList" array
+    total = cart.reduce((acc, curr)=>acc+curr.price*curr.quantity,0);
 }
 
 // Exercise 4
