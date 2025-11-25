@@ -16,7 +16,10 @@ const buy = (id) => {
     productOnCart!=undefined?
         (productOnCart.quantity++)
         :(cart.push({...productToBuy, quantity: 1}));
-        calculateTotal();
+    applyPromotionsCart();
+    calculateTotal();
+    console.log(cart);   
+
 }
 const handleProductAddition = (event) => {
     let productId = Number(event.target.getAttribute('data-product-id'));
@@ -39,7 +42,19 @@ const calculateTotal = () =>  {
 
 // Exercise 4
 const applyPromotionsCart = () =>  {
-    // Apply promotions to each item in the array "cart"
+    cart.forEach(product => {
+        if(product.offer) discountProductPrice(product);
+        console.log(`Product price: ${product.price}`);
+    });
+}
+
+const discountProductPrice = (product) => {
+    let originalProduct = products.find((originalProduct)=>originalProduct.id === product.id);
+    let discountApplied = product.price !== originalProduct.price;
+
+    if (product.quantity >= product.offer.number && !discountApplied){
+        product.price -= product.price/100*product.offer.percent;   
+    }
 }
 
 // Exercise 5
