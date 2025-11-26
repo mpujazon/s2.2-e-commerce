@@ -18,7 +18,6 @@ const buy = (id) => {
         (productOnCart.quantity++)
         :(cart.push({...productToBuy, quantity: 1}));
     countProduct.textContent = cart.length;
-    applyPromotionsCart();
     calculateTotal();
 }
 const handleProductAddition = (event) => {
@@ -40,6 +39,7 @@ cleanCartButton.addEventListener('click', cleanCart);
 
 // Exercise 3
 const calculateTotal = () =>  {
+    applyPromotionsCart();
     total = 0;
     cart.forEach((product)=>{
         let productSubtotal = product.subtotalWithDiscount || product.price*product.quantity;
@@ -59,6 +59,8 @@ const discountProductPrice = (product) => {
 
     if (product.quantity >= product.offer.number){
         product.subtotalWithDiscount = (product.price - product.price/100*product.offer.percent) * product.quantity;
+    }else{
+        product.subtotalWithDiscount = null;
     }
 }
 
@@ -94,8 +96,6 @@ cartButton.addEventListener('click', printCart);
 const capitalizeFirstLetter = (val)=>  {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
-
-
 
 // ** Nivell II **
 
