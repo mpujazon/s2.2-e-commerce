@@ -75,16 +75,20 @@ const printCart = () => {
             <tr>
                 <th scope="row">${capitalizeFirstLetter(product.name)}</th>
                 <td>$${(product.price)}</td>
-                <td>${product.quantity}</td>
+                <td>
+                    <button type="button" class="btn btn-sm btn-secondary decrement-quantity" product-id='${product.id}'>-</button>
+                    ${product.quantity}
+                    <button type="button" class="btn btn-sm btn-secondary increment-quantity" product-id='${product.id}'>+</button>
+                </td>
                 <td>$${(product.subtotalWithDiscount)?.toFixed(2) || (product.price * product.quantity).toFixed(2)}</td>
             </tr>
         `;        
         cartList.appendChild(productRow);
     });
+    dynamicDecrementEventListener();    
     totalPrice.innerHTML = total.toFixed(2);
 }
 cartButton.addEventListener('click', printCart);
-
 
 const capitalizeFirstLetter = (val)=>  {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -95,8 +99,26 @@ const capitalizeFirstLetter = (val)=>  {
 // ** Nivell II **
 
 // Exercise 7
-const removeFromCart = (id) => {
+let decrementButtons = [];
 
+const removeFromCart = (event) => {
+    let id = Number(event.currentTarget.getAttribute('product-id'));   
+    let product = cart.find((product)=> product.id === id);
+    if(product.quantity === 1){
+        let index = cart.indexOf(product);
+        cart.splice(index,1);
+    }else{
+        product.quantity --;
+    }
+    calculateTotal();
+    printCart();
+}
+const dynamicDecrementEventListener = () => {
+    decrementButtons = [...document.getElementsByClassName('decrement-quantity')];
+    
+    decrementButtons.forEach((button)=>{
+        button.addEventListener('click', removeFromCart);
+    })
 }
 
 const open_modal = () =>  {
