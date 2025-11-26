@@ -75,7 +75,7 @@ const printCart = () => {
             <tr>
                 <th scope="row">${capitalizeFirstLetter(product.name)}</th>
                 <td>$${(product.price)}</td>
-                <td>
+                <td class='w-2'>
                     <button type="button" class="btn btn-sm btn-secondary decrement-quantity" product-id='${product.id}'>-</button>
                     ${product.quantity}
                     <button type="button" class="btn btn-sm btn-secondary increment-quantity" product-id='${product.id}'>+</button>
@@ -86,6 +86,7 @@ const printCart = () => {
         cartList.appendChild(productRow);
     });
     dynamicDecrementEventListener();    
+    dynamicIncrementEventListener();
     totalPrice.innerHTML = total.toFixed(2);
 }
 cartButton.addEventListener('click', printCart);
@@ -118,6 +119,24 @@ const dynamicDecrementEventListener = () => {
     
     decrementButtons.forEach((button)=>{
         button.addEventListener('click', removeFromCart);
+    })
+}
+
+// Extra: Increment Button
+let incrementButtons = [];
+
+const addFromCart = (event) => {
+    let id = Number(event.currentTarget.getAttribute('product-id'));   
+    let product = cart.find((product)=> product.id === id);
+    product.quantity ++;
+    calculateTotal();
+    printCart();
+}
+const dynamicIncrementEventListener = () => {
+    incrementButtons = [...document.getElementsByClassName('increment-quantity')];
+    
+    incrementButtons.forEach((button)=>{
+        button.addEventListener('click', addFromCart);
     })
 }
 
