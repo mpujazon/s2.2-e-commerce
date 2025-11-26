@@ -1,66 +1,86 @@
-# Sprint 2 IT Academy | Shop
+# Sprint 2.2 - E-Commerce
 
-## Introduction
+## 📄 Description
 
-A company in the e-commerce sector has asked us for a web application that allows them to offer the purchase of their products through the internet.
+ShopNow is a functional e-commerce web application built with vanilla JavaScript. This project demonstrates modern web development practices including DOM manipulation, shopping cart management, form validation, and discount promotions. Users can browse products across different categories (grocery, beauty, and clothes), add items to their cart, and complete checkout with form validation.
 
-You will be in charge of setting up an initial demo version of the application for the client: management of the shopping cart and the application of the promotions on the final price. You have 1 week to finish this part of sprint (2.2).
+## 📁 Project Structure
 
-<br>
-
-## Requirements
-
-
-1. Clone this repo
-```bash
-$ git clone https://github.com/IT-Academy-BCN/starter-code-frontend-shop
+```
+s2.2-e-commerce/
+├── index.html           # Main shop page
+├── checkout.html        # Checkout and form validation page
+├── css/
+│   └── styles.css       # Custom styles
+├── js/
+│   ├── data.js          # Product data and catalog
+│   ├── shop.js          # Shopping cart logic
+│   └── checkout.js      # Form validation
+├── images/              # Product images and assets
+└── README.md
 ```
 
-2. Unlink your repo from the itacademy repository.
-(Explanation: You have to upload the code to your GitHub repository, not to the IT Academy. That's why you have to unlink your project from IT Academy GitHub with the following command)
+## 💻 Technologies
 
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Bootstrap 5.3.0 <!-- TODO:>
+- Font Awesome 6.4.0
+
+## 📋 Requirements
+
+- A modern web browser (Chrome, Firefox, Safari, Edge)
+- Code editor (VS Code recommended)
+
+## 🛠️ Installation
+
+Clone this repository:
 ```bash
-$ git remote rm origin
+git clone https://github.com/mpujazon/s2.2-e-commerce.git
 ```
 
-3. Link your repo to the repository you have to create in your github account
-(Explanation: Now your project is not linked to any remote repository. In order to upload your code, you have to link your project to the new repository created on github.com using the following command)
-
+Navigate to the project directory:
 ```bash
-$ git remote add origin <your repo name!>
+cd s2.2-e-commerce
 ```
 
-<br>
+## ▶️ Execution
 
-## Submission
+Use a local development server:
+```bash
 
-1. It is necessary to upload each exercise in a separate commit. The commit name must clearly indicate its content.
+# Using Node.js (http-server)
+npx http-server
+```
 
-2. Upload the link to your GitHub repository to the virtual campus, enabling your mentor to review and provide feedback.
+Then navigate to `http://localhost:8080` in your browser.
 
+## ✨ Features
 
+- **Product Catalog**: Browse products organized by categories (Grocery, Beauty, Clothes)
+- **Shopping Cart**: Add/remove products with quantity management
+- **Promotions**: Automatic discount application based on quantity
+- **Cart Modal**: Real-time cart updates with product details
+- **Checkout**: Complete form validation for customer information
+- **Responsive Design**: Mobile-friendly interface with Bootstrap <!-- TODO:>
 
-<br>
+## 🧠 What I've Learned
 
-## Introduction
+- **DOM Manipulation**: Dynamic content updates and event handling
+- **Array Methods**: Using `find()`, `filter()`, `forEach()` for data management
+- **ES6 Modules**: Importing/exporting data between files
+- **Form Validation**: Using regex patterns for input validation
+- **Shopping Cart Logic**: Managing product quantities and calculating totals
+- **Promotional Discounts**: Implementing business logic for special offers
+- **Bootstrap Framework**: Creating responsive layouts and components <!-- TODO:>
 
-The statement of the exercise is available on the virtual campus.
+## 🤝 Contributions
 
-<br>
+Contributions are welcome! Please follow these steps to contribute:
 
-
-## Instructions
-
-You have the following indications from the frontend manager:
-
-- You have prepared the base of the project on which you will work: https://github.com/IT-Academy-BCN/starter-code-frontend-shop
-
-- The base of the project on which you will work has already created all the files, and an initial version of the interface, so you can focus on programming the logic.
-
-- As at the moment we don't consume data from a server using an API, we will work with hardcoded data in the application. For the moment we will implement the logic using a small group of 9 products divided in 3 sections.
-
-- Except for the last level, showing the result of the functions by console is enough.
-
-- The logic to implement will be placed in the src/grocery.js and src/checkout.js files. You will see that the built in functions have already been created for you to implement them.
-
-- It is forbidden to copy the code, since this way you don't learn anything. Furthermore, as you can see, the second release of sprint 5 is a mini-level test with the mentor, in which you will have to demonstrate live that you have acquired the javascript concepts. Don't worry, if you work on the releases you won't have any problems.
+- Fork the repository
+- Create a new branch: `git checkout -b feature/NewFeature`
+- Make your changes and commit them: `git commit -m 'Add New Feature'`
+- Push the changes to your branch: `git push origin feature/NewFeature`
+- Create a pull request
