@@ -22,15 +22,12 @@ export const addProductToCart = (product)=>{
 const getProductOnCart = (product) => cart.find((cartProduct)=> product.id === cartProduct.id);
 
 // Exercise 2
-export const cleanCart = () =>  {
+export const clearCart = () =>  {
     cart.length = 0;
-    total = 0;
-    countProduct.textContent = 0;
-    printCart();
 }
 
 // Exercise 3
-const calculateTotal = () =>  {
+export const calculateTotal = () =>  {
     applyPromotionsCart();
     total = 0;
     cart.forEach((product)=>{

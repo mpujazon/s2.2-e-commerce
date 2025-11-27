@@ -1,7 +1,6 @@
-
 // Exercise 1
 const countProduct = document.getElementById('count_product');
-export const updateCartCount = (cartLength) => { countProduct.textContent = cartLength }
+export const updateCartCount = (cartLength=0) => { countProduct.textContent = cartLength }
 
 // Exercise 5
 const cartButton = document.querySelector('.cart-button');
