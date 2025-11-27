@@ -1,5 +1,5 @@
-import { getProduct,addProductToCart, getCart, clearCart, calculateTotal} from "./logic.js";
-import { updateCartCount } from "./ui.js";
+import { getProduct,addProductToCart, getCart, clearCart, calculateTotal, getTotalPrice} from "./logic.js";
+import { updateCartCount, printCart } from "./ui.js";
 
 // Exercise 1
 const handleBuyProduct = (event) => {
@@ -16,7 +16,11 @@ buttons.forEach((button)=>{
 const handleClearCart = () => {
     clearCart();
     updateCartCount()
-    printCart();
+    printCart(getCart(), getTotalPrice());
 }
 const clearCartButton = document.getElementById('clean-cart');
 clearCartButton.addEventListener('click', handleClearCart);
+
+// Exercise 5
+const cartButton = document.querySelector('.cart-button');
+cartButton.addEventListener('click', ()=> printCart(getCart(), getTotalPrice()));

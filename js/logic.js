@@ -1,11 +1,13 @@
 import { products } from "./data.js";
 
 const cart = [];
+export const getCart = () => cart;
+
 let totalPrice = 0;
+export const getTotalPrice = () => totalPrice;
 
 
 // Exercise 1
-export const getCart = () => cart;
 export const getProduct = (productId) => {
     const product = products.find((product) => product.id === productId);
     if (product) return product;
@@ -49,7 +51,7 @@ const applyDiscount = (product) =>  {
 }
 
 // Exercise 7
-const removeFromCart = (event) => {
+export const removeFromCart = (event) => {
     let id = Number(event.currentTarget.getAttribute('product-id'));   
     let product = cart.find((product)=> product.id === id);
     if(product.quantity === 1){
