@@ -33,26 +33,19 @@ export const clearCart = () =>  {
 
 // Exercise 3
 export const calculateTotal = () =>  {
-    totalPrice = cart.reduce((acc, product)=> acc += product.subtotalPrice,0);
+    totalPrice = cart.reduce((acc, product)=> acc += product.subtotalPrice, 0);
 }
 const calculateSubtotal = (cartProduct) => {
+    if((cartProduct.quantity >= cartProduct.offer?.number) && !cartProduct.priceBeforeDiscount){
+        applyDiscount(cartProduct);
+    }
     cartProduct.subtotalPrice = cartProduct.price * cartProduct.quantity;
 }
+
 // Exercise 4
-const applyPromotionsCart = () =>  {
-    cart.forEach(product => {
-        if(product.offer) discountProductPrice(product);
-    });
-}
-
-const discountProductPrice = (product) => {
-    let originalProduct = products.find((originalProduct)=>originalProduct.id === product.id);
-
-    if (product.quantity >= product.offer.number){
-        product.subtotalWithDiscount = (product.price - product.price/100*product.offer.percent) * product.quantity;
-    }else{
-        product.subtotalWithDiscount = null;
-    }
+const applyDiscount = (product) =>  {
+    product.priceBeforeDiscount = product.price;
+    product.price = (product.price - product.price/100*product.offer.percent);
 }
 
 // Exercise 7
