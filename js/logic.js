@@ -5,27 +5,21 @@ let totalPrice = 0;
 
 
 // Exercise 1
-const getProduct = (productId) => {
+export const getCart = () => cart;
+export const getProduct = (productId) => {
     const product = products.find((product) => product.id === productId);
     if (product) return product;
     throw new Error (`Product with ${productId} does not exist.`);
 }
 
-// Exercise 1
-const buy = (id) => {
-    let productToBuy = products.find((product) => product.id === id);
-    let productOnCart = cart.find((product)=> product.id === productToBuy.id);   
-    
-    productOnCart!=undefined?
-        (productOnCart.quantity++)
-        :(cart.push({...productToBuy, quantity: 1}));
-    countProduct.textContent = cart.length;
-    calculateTotal();
+export const addProductToCart = (product)=>{
+    const productOnCart = getProductOnCart(product);
+    productOnCart?
+        productOnCart.quantity ++
+        :cart.push({...product, quantity:1});
 }
-export const handleProductAddition = (event) => {
-    let productId = Number(event.target.getAttribute('data-product-id'));
-    buy(productId);
-}
+
+const getProductOnCart = (product) => cart.find((cartProduct)=> product.id === cartProduct.id);
 
 // Exercise 2
 export const cleanCart = () =>  {

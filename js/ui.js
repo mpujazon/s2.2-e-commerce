@@ -1,14 +1,7 @@
-import { cleanCart, handleProductAddition} from "./logic.js";
-const buttons = [...document.getElementsByClassName('add-to-cart')]; 
-const cleanCartButton = document.getElementById('clean-cart');
-const countProduct = document.getElementById('count_product');
-
-cleanCartButton.addEventListener('click', cleanCart);
 
 // Exercise 1
-buttons.forEach((button)=>{
-    button.addEventListener("click", handleProductAddition);
-});
+const countProduct = document.getElementById('count_product');
+export const updateCartCount = (cartLength) => { countProduct.textContent = cartLength }
 
 // Exercise 5
 const cartButton = document.querySelector('.cart-button');
