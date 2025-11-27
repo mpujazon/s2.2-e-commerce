@@ -1,4 +1,4 @@
-import { getProduct,addProductToCart, getCart, clearCart} from "./logic.js";
+import { getProduct,addProductToCart, getCart, clearCart, calculateTotal} from "./logic.js";
 import { updateCartCount } from "./ui.js";
 
 // Exercise 1
@@ -15,7 +15,6 @@ buttons.forEach((button)=>{
 // Exercise 2
 const handleClearCart = () => {
     clearCart();
-    calculateTotal();
     updateCartCount()
     printCart();
 }

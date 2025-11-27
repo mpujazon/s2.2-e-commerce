@@ -14,9 +14,13 @@ export const getProduct = (productId) => {
 
 export const addProductToCart = (product)=>{
     const productOnCart = getProductOnCart(product);
-    productOnCart?
-        productOnCart.quantity ++
-        :cart.push({...product, quantity:1});
+    if (productOnCart){
+        productOnCart.quantity ++;
+        calculateSubtotal(productOnCart);
+    }else{
+        cart.push({...product, quantity:1, subtotalPrice: product.price});
+    }
+    calculateTotal();
 }
 
 const getProductOnCart = (product) => cart.find((cartProduct)=> product.id === cartProduct.id);
@@ -24,18 +28,16 @@ const getProductOnCart = (product) => cart.find((cartProduct)=> product.id === c
 // Exercise 2
 export const clearCart = () =>  {
     cart.length = 0;
+    calculateTotal();
 }
 
 // Exercise 3
 export const calculateTotal = () =>  {
-    applyPromotionsCart();
-    total = 0;
-    cart.forEach((product)=>{
-        let productSubtotal = product.subtotalWithDiscount || product.price*product.quantity;
-        total += productSubtotal;
-    });
+    totalPrice = cart.reduce((acc, product)=> acc += product.subtotalPrice,0);
 }
-
+const calculateSubtotal = (cartProduct) => {
+    cartProduct.subtotalPrice = cartProduct.price * cartProduct.quantity;
+}
 // Exercise 4
 const applyPromotionsCart = () =>  {
     cart.forEach(product => {
