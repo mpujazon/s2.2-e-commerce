@@ -3,6 +3,14 @@ import { products } from "./data.js";
 const cart = [];
 let totalPrice = 0;
 
+
+// Exercise 1
+const getProduct = (productId) => {
+    const product = products.find((product) => product.id === productId);
+    if (product) return product;
+    throw new Error (`Product with ${productId} does not exist.`);
+}
+
 // Exercise 1
 const buy = (id) => {
     let productToBuy = products.find((product) => product.id === id);
@@ -14,16 +22,13 @@ const buy = (id) => {
     countProduct.textContent = cart.length;
     calculateTotal();
 }
-const handleProductAddition = (event) => {
+export const handleProductAddition = (event) => {
     let productId = Number(event.target.getAttribute('data-product-id'));
     buy(productId);
 }
-buttons.forEach((button)=>{
-    button.addEventListener("click", handleProductAddition);
-});
 
 // Exercise 2
-const cleanCart = () =>  {
+export const cleanCart = () =>  {
     cart.length = 0;
     total = 0;
     countProduct.textContent = 0;

@@ -1,15 +1,21 @@
+import { cleanCart, handleProductAddition} from "./logic.js";
 const buttons = [...document.getElementsByClassName('add-to-cart')]; 
 const cleanCartButton = document.getElementById('clean-cart');
 const countProduct = document.getElementById('count_product');
 
 cleanCartButton.addEventListener('click', cleanCart);
 
+// Exercise 1
+buttons.forEach((button)=>{
+    button.addEventListener("click", handleProductAddition);
+});
+
 // Exercise 5
 const cartButton = document.querySelector('.cart-button');
 const totalPrice = document.getElementById('total_price');
 const cartList = document.getElementById('cart_list');
 
-const printCart = () => {
+export const printCart = () => {
     cartList.innerHTML = '';
     cart.forEach((product) => {
         let productRow = document.createElement('tr');

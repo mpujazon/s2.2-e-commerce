@@ -1,3 +1,1 @@
-import { printCart } from "./ui";
-
-printCart();
+import { printCart } from "./ui.js";
