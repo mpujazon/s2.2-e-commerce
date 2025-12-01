@@ -15,14 +15,16 @@ export const printCart = (cart, totalPrice) => {
         const productRow = document.createElement('tr');
         productRow.innerHTML = `
             <tr>
-                <th scope="row">${capitalizeFirstLetter(product.name)}</th>
-                <td>$${(product.price)}</td>
-                <td class='w-2'>
-                    <button type="button" class="btn btn-sm btn-secondary decrement-button" product-id='${product.id}'>-</button>
-                    ${product.quantity}
-                    <button type="button" class="btn btn-sm btn-secondary increment-button" product-id='${product.id}'>+</button>
+                <th scope="row" class="py-3 fw-semibold">${capitalizeFirstLetter(product.name)}</th>
+                <td class="py-3">$${(product.price)}</td>
+                <td class="py-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btn btn-sm btn-outline-danger decrement-button" product-id='${product.id}'>-</button>
+                        <span class="fw-bold">${product.quantity}</span>
+                        <button type="button" class="btn btn-sm btn-outline-success increment-button" product-id='${product.id}'>+</button>
+                    </div>
                 </td>
-                <td>$${(product.subtotalPrice).toFixed(2)}</td>
+                <td class="py-3 fw-semibold text-primary">$${(product.subtotalPrice).toFixed(2)}</td>
             </tr>
         `;        
         cartList.appendChild(productRow);
