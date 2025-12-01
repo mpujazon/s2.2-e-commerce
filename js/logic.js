@@ -1,17 +1,21 @@
 import { products } from "./data.js";
 import { printCart } from "./ui.js";
 
-const cart = [];
-export const getCart = () => cart;
+const cart = {
+    products: [],
+    totalPrice:0
+};
 
-let totalPrice = 0;
-export const getTotalPrice = () => totalPrice;
+export const getCart = () => cart.products;
 
-const updateLocalStorageCart = () => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-}
+export const getTotalPrice = () => cart.totalPrice;
 
 const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
+
+const updateLocalStorageCart = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
 
 
 // Exercise 1
@@ -27,22 +31,23 @@ export const addProductToCart = (product)=>{
         productOnCart.quantity ++;
         calculateSubtotal(productOnCart);
     }else{
-        cart.push({...product, quantity:1, subtotalPrice: product.price});
+        cart.products.push({...product, quantity:1, subtotalPrice: product.price});
     }
     calculateTotal();
 }
 
-const getProductOnCart = (product) => cart.find((cartProduct)=> product.id === cartProduct.id);
+const getProductOnCart = (product) => cart.products.find((cartProduct)=> product.id === cartProduct.id);
 
 // Exercise 2
 export const clearCart = () =>  {
-    cart.length = 0;
+    cart.products.length = 0;
     calculateTotal();
 }
 
 // Exercise 3
 export const calculateTotal = () =>  {
-    totalPrice = cart.reduce((acc, product)=> acc += product.subtotalPrice, 0);
+    cart.totalPrice = cart.products.reduce((acc, product)=> acc += product.subtotalPrice, 0);
+    updateLocalStorageCart();
 }
 const calculateSubtotal = (cartProduct) => {
     cartProduct.quantity >= cartProduct.offer?.number?
@@ -58,22 +63,22 @@ const getDiscountedPrice = (product) =>  {
 // Exercise 7
 export const removeFromCart = (event) => {
     const id = Number(event.currentTarget.getAttribute('product-id'));   
-    const productOnCart = cart.find((product)=> product.id === id);
+    const productOnCart = cart.products.find((product)=> product.id === id);
     if(productOnCart.quantity === 1){
-        const index = cart.indexOf(productOnCart);
-        cart.splice(index,1);
+        const index = cart.products.indexOf(productOnCart);
+        cart.products.splice(index,1);
     }else{
-        productOnCart.quantity --;
+        productOnCart.quantity--;
         calculateSubtotal(productOnCart);
     }
     calculateTotal();
-    printCart(cart, totalPrice);
+    printCart(getCart(), getTotalPrice());
 }
 
 // Extra: Increment button
 export const addFromCart = (event) => {
     let id = Number(event.currentTarget.getAttribute('product-id'));   
-    let productOnCart = cart.find((product)=> product.id === id);
+    let productOnCart = cart.products.find((product)=> product.id === id);
     addProductToCart(productOnCart);
-    printCart(cart, totalPrice);
+    printCart(getCart(), getTotalPrice());
 }
