@@ -7,6 +7,12 @@ export const getCart = () => cart;
 let totalPrice = 0;
 export const getTotalPrice = () => totalPrice;
 
+const updateLocalStorageCart = () => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+}
+
+const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
+
 
 // Exercise 1
 export const getProduct = (productId) => {
