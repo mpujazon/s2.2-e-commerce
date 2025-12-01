@@ -24,3 +24,11 @@ clearCartButton.addEventListener('click', handleClearCart);
 // Exercise 5
 const cartButton = document.querySelector('.cart-button');
 cartButton.addEventListener('click', ()=> printCart(getCart(), getTotalPrice()));
+
+// Exercise 7
+export const addDynamicEventListener = (buttonsClassName, eventListenerFunction) => {
+    const buttons = [...document.getElementsByClassName(buttonsClassName)];
+    buttons.forEach((button)=>{
+        button.addEventListener('click', eventListenerFunction);
+    })
+}

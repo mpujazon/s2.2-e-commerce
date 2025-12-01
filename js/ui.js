@@ -1,3 +1,6 @@
+import { addDynamicEventListener } from "./index.js";
+import { addFromCart, removeFromCart } from "./logic.js";
+
 // Exercise 1
 const countProduct = document.getElementById('count_product');
 export const updateCartCount = (cartLength=0) => { countProduct.textContent = cartLength }
@@ -15,44 +18,20 @@ export const printCart = (cart, totalPrice) => {
                 <th scope="row">${capitalizeFirstLetter(product.name)}</th>
                 <td>$${(product.price)}</td>
                 <td class='w-2'>
-                    <button type="button" class="btn btn-sm btn-secondary decrement-quantity" product-id='${product.id}'>-</button>
+                    <button type="button" class="btn btn-sm btn-secondary decrement-button" product-id='${product.id}'>-</button>
                     ${product.quantity}
-                    <button type="button" class="btn btn-sm btn-secondary increment-quantity" product-id='${product.id}'>+</button>
+                    <button type="button" class="btn btn-sm btn-secondary increment-button" product-id='${product.id}'>+</button>
                 </td>
                 <td>$${(product.subtotalPrice).toFixed(2)}</td>
             </tr>
         `;        
         cartList.appendChild(productRow);
     });
-    // dynamicDecrementEventListener();    
-    // dynamicIncrementEventListener();
+    addDynamicEventListener('decrement-button', removeFromCart);
+    addDynamicEventListener('increment-button', addFromCart);
     totalPriceElement.innerHTML = totalPrice.toFixed(2);
 }
 
 const capitalizeFirstLetter = (val)=>  {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
-
-// // ** Nivell II **
-
-// // Exercise 7
-// let decrementButtons = [];
-
-// const dynamicDecrementEventListener = () => {
-//     decrementButtons = [...document.getElementsByClassName('decrement-quantity')];
-    
-//     decrementButtons.forEach((button)=>{
-//         button.addEventListener('click', removeFromCart);
-//     })
-// }
-
-// // Extra: Increment Button
-// let incrementButtons = [];
-
-// const dynamicIncrementEventListener = () => {
-//     incrementButtons = [...document.getElementsByClassName('increment-quantity')];
-    
-//     incrementButtons.forEach((button)=>{
-//         button.addEventListener('click', addFromCart);
-//     })
-// }

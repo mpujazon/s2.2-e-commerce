@@ -1,4 +1,5 @@
 import { products } from "./data.js";
+import { printCart } from "./ui.js";
 
 const cart = [];
 export const getCart = () => cart;
@@ -52,23 +53,23 @@ const applyDiscount = (product) =>  {
 
 // Exercise 7
 export const removeFromCart = (event) => {
-    let id = Number(event.currentTarget.getAttribute('product-id'));   
-    let product = cart.find((product)=> product.id === id);
-    if(product.quantity === 1){
-        let index = cart.indexOf(product);
+    const id = Number(event.currentTarget.getAttribute('product-id'));   
+    const productOnCart = cart.find((product)=> product.id === id);
+    if(productOnCart.quantity === 1){
+        const index = cart.indexOf(productOnCart);
         cart.splice(index,1);
     }else{
-        product.quantity --;
+        productOnCart.quantity --;
+        calculateSubtotal(productOnCart);
     }
     calculateTotal();
-    printCart();
+    printCart(cart, totalPrice);
 }
 
 // Extra: Increment button
-const addFromCart = (event) => {
+export const addFromCart = (event) => {
     let id = Number(event.currentTarget.getAttribute('product-id'));   
-    let product = cart.find((product)=> product.id === id);
-    product.quantity ++;
-    calculateTotal();
-    printCart();
+    let productOnCart = cart.find((product)=> product.id === id);
+    addProductToCart(productOnCart);
+    printCart(cart, totalPrice);
 }
