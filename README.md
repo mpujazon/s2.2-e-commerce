@@ -4,7 +4,7 @@
 
 ShopNow is a functional e-commerce web application built with vanilla JavaScript. This project demonstrates modern web development practices including DOM manipulation, shopping cart management, form validation, and discount promotions. Users can browse products across different categories (grocery, beauty, and clothes), add items to their cart, and complete checkout with form validation.
 
-
+![Demo](./images/screenshot.webp)
 ## 📁 Project Structure
 
 ```
