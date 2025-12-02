@@ -4,6 +4,7 @@
 
 ShopNow is a functional e-commerce web application built with vanilla JavaScript. This project demonstrates modern web development practices including DOM manipulation, shopping cart management, form validation, and discount promotions. Users can browse products across different categories (grocery, beauty, and clothes), add items to their cart, and complete checkout with form validation.
 
+
 ## 📁 Project Structure
 
 ```
@@ -11,11 +12,13 @@ s2.2-e-commerce/
 ├── index.html           # Main shop page
 ├── checkout.html        # Checkout and form validation page
 ├── css/
-│   └── styles.css       # Custom styles
+│   └── styles.css       # Bootstrap styles
 ├── js/
 │   ├── data.js          # Product data and catalog
-│   ├── shop.js          # Shopping cart logic
-│   └── checkout.js      # Form validation
+│   ├── index.js         # Manager
+│   ├── logic.js         # Logic Functions
+│   ├── ui.js            # UI Functions
+│   └── checkout.js      # Order summary and form validation
 ├── images/              # Product images and assets
 └── README.md
 ```
@@ -25,8 +28,7 @@ s2.2-e-commerce/
 - HTML5
 - CSS3
 - JavaScript (ES6+)
-- Bootstrap 5.3.0 <!-- TODO:>
-- Font Awesome 6.4.0
+- Bootstrap 5.3.0
 
 ## 📋 Requirements
 
@@ -49,7 +51,6 @@ cd s2.2-e-commerce
 
 Use a local development server:
 ```bash
-
 # Using Node.js (http-server)
 npx http-server
 ```
@@ -63,7 +64,8 @@ Then navigate to `http://localhost:8080` in your browser.
 - **Promotions**: Automatic discount application based on quantity
 - **Cart Modal**: Real-time cart updates with product details
 - **Checkout**: Complete form validation for customer information
-- **Responsive Design**: Mobile-friendly interface with Bootstrap <!-- TODO:>
+- **Responsive Design**: Mobile-friendly interface with Bootstrap
+- **Cart Button State Management**: Automatically disable or enable cart buttons based on whether the cart is empty
 
 ## 🧠 What I've Learned
 
@@ -73,7 +75,7 @@ Then navigate to `http://localhost:8080` in your browser.
 - **Form Validation**: Using regex patterns for input validation
 - **Shopping Cart Logic**: Managing product quantities and calculating totals
 - **Promotional Discounts**: Implementing business logic for special offers
-- **Bootstrap Framework**: Creating responsive layouts and components <!-- TODO:>
+- **Conditional UI Updates**: Managing button states dynamically based on application state
 
 ## 🤝 Contributions
 
