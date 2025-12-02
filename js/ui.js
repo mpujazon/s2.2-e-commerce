@@ -1,11 +1,9 @@
 import { addDynamicEventListener } from "./index.js";
 import { addFromCart, removeFromCart, isCartEmpty } from "./logic.js";
 
-// Exercise 1
 const countProduct = document.getElementById('count_product');
 export const updateCartCount = (cartLength=0) => { countProduct.textContent = cartLength }
 
-// Exercise 5
 const totalPriceElement = document.getElementById('total_price');
 const cartList = document.getElementById('cart_list');
 
@@ -34,7 +32,6 @@ export const printCart = (cart, totalPrice) => {
     totalPriceElement.innerHTML = totalPrice.toFixed(2);
 }
 
-
 export const printCheckoutSummary = (container, totalPriceSpan, cart)=>{
     container.innerHTML = '';
     cart.products?.forEach((product)=>{
@@ -60,7 +57,6 @@ const capitalizeFirstLetter = (val)=>  {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
-// Extra: Disable cart buttons
 const cartButtons = [...document.getElementsByClassName('cart-buttons')];
 
 export const enableCartButtonsState = (enable) => {
