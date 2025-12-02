@@ -1,3 +1,11 @@
+import { getLocalStorageCart } from "./logic.js";
+import { printCheckoutSummary } from "./ui.js";
+
+const checkoutSummaryList = document.getElementById('order-summary-list');
+const totalPriceSpan = document.getElementById('summary-total-price');
+
+printCheckoutSummary(checkoutSummaryList, totalPriceSpan, getLocalStorageCart());
+
 // Exercise 6
 const validate = (e) => {
 	e.preventDefault();

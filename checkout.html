@@ -60,28 +60,28 @@
 		</div>
 	</nav>
 	<div class="container">
-		<h1 class="text-center head m-4">Checkout Page</h1>
-
-		<div class="row mr-0">
-			<div class="col-sm-6">
-				<h3 class="my-3 bord shadow text-center"><i class="fas fa-dollar-sign p-2"></i>Cash on Delivery</h3>
-			</div>
-			<div class="col-sm-6 ">
-				<h3 class="my-3 bord shadow text-center"><i class="fas fa-arrows-alt-h p-2"></i>100% Return</h3>
-			</div>
-		</div>
-
-		<div class="row mr-0">
-			<div class="col-sm-6">
-				<h3 class="my-3 bord shadow text-center"><i class="far fa-thumbs-up p-2"></i>Quality Assured</h3>
-			</div>
-			<div class="col-sm-6 ">
-				<h3 class="my-3 bord shadow text-center"><i class="fas fa-stopwatch p-2"></i>Delivery on time</h3>
-			</div>
-		</div>
-		<div id="checkout-cart">
-
-		</div>
+		
+		<div class="modal-body p-4">
+					<h3 class="text-center fw-bold mb-4">Order Summary</h3>
+					<div class="table-responsive">
+						<table class="table table-hover align-middle">
+							<thead class="table-light">
+								<tr>
+									<th scope="col" class="py-3">Product</th>
+									<th scope="col" class="py-3">Price</th>
+									<th scope="col" class="py-3">Qty.</th>
+									<th scope="col" class="py-3">Total <small class="text-muted">(with discount)</small></th>
+								</tr>
+							</thead>
+							<tbody id="order-summary-list">
+								
+							</tbody>
+						</table>
+					</div>
+					<div class="text-center fs-3 fw-bold mt-4 mb-4 border-top pt-4">
+						Total: <span class="text-success">$<span id="summary-total-price">100</span></span>
+					</div>
+				</div>
 		<form class="form">
 			<div class="row bord p-5 shadow m-5">
 				<div class="col-sm-6">
@@ -135,7 +135,23 @@
 				</div>
 			</div>
 		</form>
+		<div class="row mr-0">
+			<div class="col-sm-6">
+				<h3 class="my-3 bord shadow text-center"><i class="fas fa-dollar-sign p-2"></i>Cash on Delivery</h3>
+			</div>
+			<div class="col-sm-6 ">
+				<h3 class="my-3 bord shadow text-center"><i class="fas fa-arrows-alt-h p-2"></i>100% Return</h3>
+			</div>
+		</div>
 
+		<div class="row mr-0">
+			<div class="col-sm-6">
+				<h3 class="my-3 bord shadow text-center"><i class="far fa-thumbs-up p-2"></i>Quality Assured</h3>
+			</div>
+			<div class="col-sm-6 ">
+				<h3 class="my-3 bord shadow text-center"><i class="fas fa-stopwatch p-2"></i>Delivery on time</h3>
+			</div>
+		</div>
 	</div>
 
 
@@ -177,7 +193,7 @@
 
 
 	<!-- Core theme JS-->
-	<script src="./js/checkout.js"></script>
+	<script src="./js/checkout.js" type="module"></script>
 </body>
 
 </html>

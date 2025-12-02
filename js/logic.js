@@ -10,9 +10,9 @@ export const getCart = () => cart.products;
 
 export const getTotalPrice = () => cart.totalPrice;
 
-const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
+export const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
 
-const updateLocalStorageCart = () => {
+export const updateLocalStorageCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 

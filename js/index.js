@@ -19,11 +19,11 @@ const handleClearCart = () => {
     printCart(getCart(), getTotalPrice());
 }
 const clearCartButton = document.getElementById('clean-cart');
-clearCartButton.addEventListener('click', handleClearCart);
+clearCartButton?.addEventListener('click', handleClearCart);
 
 // Exercise 5
 const cartButton = document.querySelector('.cart-button');
-cartButton.addEventListener('click', ()=> printCart(getCart(), getTotalPrice()));
+cartButton?.addEventListener('click', ()=> printCart(getCart(), getTotalPrice()));
 
 // Exercise 7
 export const addDynamicEventListener = (buttonsClassName, eventListenerFunction) => {
