@@ -1,5 +1,6 @@
 import { addDynamicEventListener } from "./index.js";
-import { addFromCart, removeFromCart, isCartEmpty } from "./logic.js";
+import { addFromCart, removeFromCart } from "./logic.js";
+import { capitalizeFirstLetter } from "./utils.js";
 
 const countProduct = document.getElementById('count_product');
 export const updateCartCount = (cartLength=0) => { countProduct.textContent = cartLength }
@@ -51,10 +52,6 @@ export const printCheckoutSummary = (container, totalPriceSpan, cart)=>{
         container.appendChild(productRow);
     });
     totalPriceSpan.textContent = cart.totalPrice.toFixed(2);
-}
-
-const capitalizeFirstLetter = (val)=>  {
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
 const cartButtons = [...document.getElementsByClassName('cart-buttons')];
