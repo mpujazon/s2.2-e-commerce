@@ -59,3 +59,16 @@ export const printCheckoutSummary = (container, totalPriceSpan, cart)=>{
 const capitalizeFirstLetter = (val)=>  {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
+
+// Extra: Disable cart buttons
+const cartButtons = [...document.getElementsByClassName('cart-buttons')];
+
+export const enableCartButtonsState = (enable) => {
+    enable?
+        cartButtons.forEach((button)=>{
+            button.disabled = false;
+        })
+        :cartButtons.forEach((button)=>{
+            button.disabled = true;
+        })
+}

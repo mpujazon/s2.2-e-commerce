@@ -1,5 +1,5 @@
-import { getProduct,addProductToCart, getCart, clearCart, calculateTotal, getTotalPrice} from "./logic.js";
-import { updateCartCount, printCart } from "./ui.js";
+import { getProduct,addProductToCart, getCart, clearCart, calculateTotal, getTotalPrice, isCartEmpty} from "./logic.js";
+import { updateCartCount, printCart, enableCartButtonsState } from "./ui.js";
 
 // Exercise 1
 const handleBuyProduct = (event) => {
@@ -31,4 +31,11 @@ export const addDynamicEventListener = (buttonsClassName, eventListenerFunction)
     buttons.forEach((button)=>{
         button.addEventListener('click', eventListenerFunction);
     })
+}
+
+// Extra: Disable or enable cart buttons
+export const handleCartButtonsState = () => {
+    isCartEmpty()?
+        enableCartButtonsState(false)
+        :enableCartButtonsState(true);
 }

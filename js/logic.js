@@ -1,4 +1,5 @@
 import { products } from "./data.js";
+import { handleCartButtonsState } from "./index.js";
 import { printCart } from "./ui.js";
 
 const cart = {
@@ -15,8 +16,6 @@ export const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart')
 export const updateLocalStorageCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
 }
-
-
 
 // Exercise 1
 export const getProduct = (productId) => {
@@ -48,6 +47,7 @@ export const clearCart = () =>  {
 export const calculateTotal = () =>  {
     cart.totalPrice = cart.products.reduce((acc, product)=> acc += product.subtotalPrice, 0);
     updateLocalStorageCart();
+    handleCartButtonsState();
 }
 const calculateSubtotal = (cartProduct) => {
     cartProduct.quantity >= cartProduct.offer?.number?
@@ -82,3 +82,6 @@ export const addFromCart = (event) => {
     addProductToCart(productOnCart);
     printCart(getCart(), getTotalPrice());
 }
+
+// Extra: Disable cart buttons
+export const isCartEmpty = () => cart.products.length === 0;
