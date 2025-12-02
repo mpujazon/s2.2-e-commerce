@@ -2,16 +2,14 @@ import { products } from "./data.js";
 import { handleCartButtonsState } from "./index.js";
 import { printCart } from "./ui.js";
 
-const cart = {
-    products: [],
-    totalPrice:0
-};
 
 export const getCart = () => cart.products;
 
 export const getTotalPrice = () => cart.totalPrice;
 
 export const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
+
+const cart =  getLocalStorageCart() || { products: [], totalPrice:0 };
 
 export const updateLocalStorageCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
