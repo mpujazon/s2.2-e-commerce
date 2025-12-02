@@ -11286,3 +11286,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/* Custom styles for product added message animation */
+#product-added-message {
+  transform: translateY(200px);
+  transition: transform 0.5s ease-in-out;
+}
+
+#product-added-message.show {
+  transform: translateY(0);
+}

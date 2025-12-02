@@ -1,11 +1,13 @@
 import { getProduct,addProductToCart, getCart, clearCart, calculateTotal, getTotalPrice, isCartEmpty} from "./logic.js";
-import { updateCartCount, printCart, enableCartButtonsState } from "./ui.js";
+import { updateCartCount, printCart, enableCartButtonsState, showProductAddedMessage } from "./ui.js";
 
 // Exercise 1
 const handleBuyProduct = (event) => {
     const productId = Number(event.target.getAttribute('data-product-id'));
     addProductToCart(getProduct(productId));
     updateCartCount(getCart().length);
+    showProductAddedMessage();
+    handleCartButtonsState();
 }
 const buttons = [...document.getElementsByClassName('add-to-cart')]; 
 buttons.forEach((button)=>{
@@ -17,6 +19,7 @@ const handleClearCart = () => {
     clearCart();
     updateCartCount()
     printCart(getCart(), getTotalPrice());
+    handleCartButtonsState();
 }
 const clearCartButton = document.getElementById('clean-cart');
 clearCartButton?.addEventListener('click', handleClearCart);

@@ -1,5 +1,5 @@
 import { addDynamicEventListener } from "./index.js";
-import { addFromCart, removeFromCart } from "./logic.js";
+import { addFromCart, removeFromCart, isCartEmpty } from "./logic.js";
 
 // Exercise 1
 const countProduct = document.getElementById('count_product');
@@ -71,4 +71,13 @@ export const enableCartButtonsState = (enable) => {
         :cartButtons.forEach((button)=>{
             button.disabled = true;
         })
+}
+
+const productMessageElement = document.getElementById('product-added-message');
+
+export const showProductAddedMessage = () => {
+    productMessageElement.classList.add('show');
+    setTimeout(() => {
+        productMessageElement.classList.remove('show');
+    }, 3000);
 }
