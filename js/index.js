@@ -1,4 +1,4 @@
-import { getProduct,addProductToCart, getCart, clearCart, calculateTotal, getTotalPrice, isCartEmpty} from "./logic.js";
+import { getProduct,addProductToCart, getCart, clearCart, getTotalPrice, isCartEmpty} from "./logic.js";
 import { updateCartCount, printCart, enableCartButtonsState, showProductAddedMessage } from "./ui.js";
 
 // Exercise 1
@@ -42,3 +42,9 @@ export const handleCartButtonsState = () => {
         enableCartButtonsState(false)
         :enableCartButtonsState(true);
 }
+
+const redirectToCheckoutPage = () => {
+    window.location.assign("./checkout.html");
+}
+const checkoutButton = document.getElementById('checkout-btn');
+checkoutButton?.addEventListener('click', redirectToCheckoutPage);
