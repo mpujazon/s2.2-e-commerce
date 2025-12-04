@@ -1,5 +1,5 @@
 import { products } from "./data.js";
-import { handleCartButtonsState } from "./index.js";
+import { cartList, handleCartButtonsState, totalPriceCartElement } from "./index.js";
 import { printCart, updateCartCount } from "./ui.js";
 
 
@@ -76,7 +76,7 @@ export const removeFromCart = (event) => {
         calculateSubtotal(productOnCart);
     }
     calculateTotal();
-    printCart(getCart(), getTotalPrice());
+    printCart(cartList, getLocalStorageCart(),totalPriceCartElement,true);
 }
 
 // Extra: Increment button
@@ -84,7 +84,7 @@ export const addFromCart = (event) => {
     const id = Number(event.target.getAttribute('product-id'));   
     const productOnCart = cart.products.find((product)=> product.id === id);
     addProductToCart(productOnCart);
-    printCart(getCart(), getTotalPrice());
+    printCart(cartList, getLocalStorageCart(),totalPriceCartElement,true);
 }
 
 // Extra: Disable cart buttons

@@ -1,12 +1,13 @@
+
 const countProduct = document.getElementById('count_product');
 export const updateCartCount = (cartLength) => { if(countProduct !== null) countProduct.textContent = cartLength }
 
 const totalPriceElement = document.getElementById('total_price');
 const cartList = document.getElementById('cart_list');
 
-export const printCart = (cart, totalPrice) => {
-    cartList.innerHTML = '';
-    cart.forEach((product) => {
+export const printCart = (container, localStorageCart, totalPriceElement, modifiable) => {
+    container.innerHTML = '';
+    localStorageCart.products.forEach((product) => {
         const productRow = document.createElement('tr');
         productRow.innerHTML = `
             <tr>
@@ -14,19 +15,19 @@ export const printCart = (cart, totalPrice) => {
                 <td class="py-3">$${(product.price)}</td>
                 <td class="py-3">
                     <div class="d-flex align-items-center gap-2">
-                        <button type="button" class="btn btn-sm btn-outline-danger decrement-button" product-id='${product.id}'>-</button>
+                        ${modifiable? `<button type="button" class="btn btn-sm btn-outline-danger decrement-button" product-id='${product.id}'>-</button>`:``}
                         <span class="fw-bold">${product.quantity}</span>
-                        <button type="button" class="btn btn-sm btn-outline-success increment-button" product-id='${product.id}'>+</button>
+                        ${modifiable? `<button type="button" class="btn btn-sm btn-outline-success increment-button" product-id='${product.id}'>+</button>`:``}
                     </div>
                 </td>
                 <td class="py-3 fw-semibold text-primary">$${(product.subtotalPrice).toFixed(2)}</td>
             </tr>
         `;        
-        cartList.appendChild(productRow);
+        container.appendChild(productRow);
     });
-    totalPriceElement.innerHTML = totalPrice.toFixed(2);
+    totalPriceElement.innerHTML = localStorageCart.totalPrice.toFixed(2);
 }
-
+/*
 export const printCheckoutSummary = (container, totalPriceSpan, cart)=>{
     container.innerHTML = '';
     cart.products?.forEach((product)=>{
@@ -47,6 +48,7 @@ export const printCheckoutSummary = (container, totalPriceSpan, cart)=>{
     });
     totalPriceSpan.textContent = cart.totalPrice.toFixed(2);
 }
+*/
 
 const cartButtons = [...document.getElementsByClassName('cart-buttons')];
 

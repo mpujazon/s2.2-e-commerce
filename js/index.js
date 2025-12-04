@@ -1,4 +1,4 @@
-import { getProduct,addProductToCart, getCart, clearCart, getTotalPrice, isCartEmpty, removeFromCart, addFromCart} from "./logic.js";
+import { getProduct,addProductToCart, getCart, clearCart, getTotalPrice, isCartEmpty, removeFromCart, addFromCart, getLocalStorageCart} from "./logic.js";
 import { updateCartCount, printCart, enableCartButtonsState, showProductAddedMessage } from "./ui.js";
 
 const handleBuyProduct = (event) => {
@@ -13,19 +13,21 @@ buttons.forEach((button)=>{
     button.addEventListener("click", handleBuyProduct);
 }); 
 
+
+export const cartList = document.getElementById('cart_list');
+export const totalPriceCartElement = document.getElementById('total_price');
 const handleClearCart = () => {
     clearCart();
     updateCartCount()
-    printCart(getCart(), getTotalPrice());
+    printCart(cartList, getLocalStorageCart(),totalPriceCartElement,true);
     handleCartButtonsState();
 }
 const clearCartButton = document.getElementById('clean-cart');
 clearCartButton?.addEventListener('click', handleClearCart);
 
 const cartButton = document.querySelector('.cart-button');
-cartButton?.addEventListener('click', ()=> printCart(getCart(), getTotalPrice()));
+cartButton?.addEventListener('click', ()=> printCart(cartList, getLocalStorageCart(),totalPriceCartElement,true));
 
-const cartList = document.getElementById('cart_list');
 cartList?.addEventListener('click',(e)=>{
     if (e.target.classList.contains('decrement-button')){
         removeFromCart(e);
