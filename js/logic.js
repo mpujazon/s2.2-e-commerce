@@ -1,18 +1,24 @@
 import { products } from "./data.js";
 import { handleCartButtonsState } from "./index.js";
-import { printCart } from "./ui.js";
+import { printCart, updateCartCount } from "./ui.js";
 
 
 export const getCart = () => cart.products;
 
 export const getTotalPrice = () => cart.totalPrice;
 
-export const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
+export const getLocalStorageCart = () => {
+    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+    updateCartCount(localStorageCart.products.length);
+    return localStorageCart;
+} 
 
 const cart =  getLocalStorageCart() || { products: [], totalPrice:0 };
 
 export const updateLocalStorageCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount(cart.products.length);
+
 }
 
 // Exercise 1

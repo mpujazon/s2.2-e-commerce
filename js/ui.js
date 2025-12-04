@@ -3,7 +3,7 @@ import { addFromCart, removeFromCart } from "./logic.js";
 import { capitalizeFirstLetter } from "./utils.js";
 
 const countProduct = document.getElementById('count_product');
-export const updateCartCount = (cartLength=0) => { countProduct.textContent = cartLength }
+export const updateCartCount = (cartLength) => { if(countProduct !== null) countProduct.textContent = cartLength }
 
 const totalPriceElement = document.getElementById('total_price');
 const cartList = document.getElementById('cart_list');
