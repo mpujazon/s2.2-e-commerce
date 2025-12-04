@@ -1,5 +1,3 @@
-import { addDynamicEventListener } from "./index.js";
-import { addFromCart, removeFromCart } from "./logic.js";
 import { capitalizeFirstLetter } from "./utils.js";
 
 const countProduct = document.getElementById('count_product');

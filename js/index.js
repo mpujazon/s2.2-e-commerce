@@ -26,7 +26,7 @@ const cartButton = document.querySelector('.cart-button');
 cartButton?.addEventListener('click', ()=> printCart(getCart(), getTotalPrice()));
 
 const cartList = document.getElementById('cart_list');
-cartList.addEventListener('click',(e)=>{
+cartList?.addEventListener('click',(e)=>{
     if (e.target.classList.contains('decrement-button')){
         removeFromCart(e);
     }
