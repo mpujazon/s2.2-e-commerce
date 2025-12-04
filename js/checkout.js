@@ -46,7 +46,9 @@ const validate = (e) => {
 		error++;
 	};
 
-	if(!validateField(fAddress, (addressInput)=>true)){
+	if(!validateField(fAddress, (addressInput)=>
+		addressInput.value.length >= 6
+	)){
 		error++;
 	}
 
