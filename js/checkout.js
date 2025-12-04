@@ -1,10 +1,10 @@
 import { getLocalStorageCart } from "./logic.js";
-import { printCheckoutSummary } from "./ui.js";
+import { printCart } from "./ui.js";
 
 const checkoutSummaryList = document.getElementById('order-summary-list');
 const totalPriceSpan = document.getElementById('summary-total-price');
 
-printCheckoutSummary(checkoutSummaryList, totalPriceSpan, getLocalStorageCart());
+printCart(checkoutSummaryList, getLocalStorageCart(), totalPriceSpan, false);
 
 // Exercise 6
 const validate = (e) => {
@@ -17,61 +17,79 @@ const validate = (e) => {
 	const fPassword = document.getElementById("fPassword");
 	const fPhone = document.getElementById("fPhone");
 
-	const lettersRegex = /^\p{L}+$/u;
+	const lettersRegex = /^[\p{L} \-']+$/u;
 	const lettersAndNumbers = /^\w+$/;
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const phoneNumberRegex = /^\+?[1-9]\d{6,14}$/;
 
-	const hasMinimumLength = (inputElement) => inputElement.value.length >= 3;
+	const hasMinimumLength = (inputElementValue) => inputElementValue.length >= 3;
 
 	const validateField = (inputElement,validationFn) => {
-		const isValid = hasMinimumLength(inputElement) && validationFn(inputElement);
+		const value = inputElement.value.trim();
+		const isValid = hasMinimumLength(value) && validationFn(value);
 		if (!isValid){
-			inputElement.classList.add('is-invalid');
+			inputIsValidTooltip(inputElement, false)
 			return false;
 		}
-		inputElement.classList.remove('is-invalid');
+		inputIsValidTooltip(inputElement, true)
 		return true;
 	}
 
 	if(!validateField(fName, (nameInput)=>
-		lettersRegex.test(nameInput.value)
+		lettersRegex.test(nameInput)
 	)){
 		error++;
 	};
 
 	if(!validateField(fEmail, (emailInput)=>
-		emailRegex.test(emailInput.value)
+		emailRegex.test(emailInput)
 	)){
 		error++;
 	};
 
-	if(!validateField(fAddress, (addressInput)=>true)){
+	if(!validateField(fAddress, (addressInput)=>
+		addressInput.length >= 6
+	)){
 		error++;
 	}
 
 	if(!validateField(fLastN, (lastNameInput)=>
-		lettersRegex.test(lastNameInput.value)
+		lettersRegex.test(lastNameInput)
 	)){
 		error++;
 	};
 
 	if(!validateField(fPassword, (passwordInput)=>
-		lettersAndNumbers.test(passwordInput.value)
+		lettersAndNumbers.test(passwordInput)
 	)){
 		error++;
 	}
 	if(!validateField(fPhone, (phoneInput)=>
-		!isNaN(phoneInput.value)
+		phoneNumberRegex.test(phoneInput)
 	)){
 		error++;
 	};
 
-	if(error>0){
-		alert("Please fill in all required fields.");
-	}else{
+	if(error===0){
+		resetForm();
 		alert("Form submitted successfully");
-		form.reset();
 	}
+}
+
+const inputIsValidTooltip = (inputElement, valid)=>{
+	if(valid){
+		inputElement.classList.remove('is-invalid');
+		inputElement.classList.add('is-valid');
+	}else{
+		inputElement.classList.remove('is-valid');
+		inputElement.classList.add('is-invalid');
+	}
+}
+
+const formInputs = [...document.getElementsByClassName('form-control')];
+const resetForm = () => {
+	formInputs.forEach((input)=>{input.classList.remove('is-valid')})
+	form.reset();
 }
 
 const form = document.querySelector('.form');

@@ -1,18 +1,24 @@
 import { products } from "./data.js";
-import { handleCartButtonsState } from "./index.js";
-import { printCart } from "./ui.js";
+import { cartList, handleCartButtonsState, totalPriceCartElement } from "./index.js";
+import { printCart, updateCartCount } from "./ui.js";
 
 
 export const getCart = () => cart.products;
 
 export const getTotalPrice = () => cart.totalPrice;
 
-export const getLocalStorageCart = () => JSON.parse(localStorage.getItem('cart'));
+export const getLocalStorageCart = () => {
+    const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+    updateCartCount(localStorageCart.products.length);
+    return localStorageCart;
+} 
 
 const cart =  getLocalStorageCart() || { products: [], totalPrice:0 };
 
 export const updateLocalStorageCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount(cart.products.length);
+
 }
 
 // Exercise 1
@@ -60,7 +66,7 @@ const getDiscountedPrice = (product) =>  {
 
 // Exercise 7
 export const removeFromCart = (event) => {
-    const id = Number(event.currentTarget.getAttribute('product-id'));   
+    const id = Number(event.target.getAttribute('product-id'));   
     const productOnCart = cart.products.find((product)=> product.id === id);
     if(productOnCart.quantity === 1){
         const index = cart.products.indexOf(productOnCart);
@@ -70,15 +76,15 @@ export const removeFromCart = (event) => {
         calculateSubtotal(productOnCart);
     }
     calculateTotal();
-    printCart(getCart(), getTotalPrice());
+    printCart(cartList, getLocalStorageCart(),totalPriceCartElement,true);
 }
 
 // Extra: Increment button
 export const addFromCart = (event) => {
-    let id = Number(event.currentTarget.getAttribute('product-id'));   
-    let productOnCart = cart.products.find((product)=> product.id === id);
+    const id = Number(event.target.getAttribute('product-id'));   
+    const productOnCart = cart.products.find((product)=> product.id === id);
     addProductToCart(productOnCart);
-    printCart(getCart(), getTotalPrice());
+    printCart(cartList, getLocalStorageCart(),totalPriceCartElement,true);
 }
 
 // Extra: Disable cart buttons
