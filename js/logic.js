@@ -66,7 +66,7 @@ const getDiscountedPrice = (product) =>  {
 
 // Exercise 7
 export const removeFromCart = (event) => {
-    const id = Number(event.currentTarget.getAttribute('product-id'));   
+    const id = Number(event.target.getAttribute('product-id'));   
     const productOnCart = cart.products.find((product)=> product.id === id);
     if(productOnCart.quantity === 1){
         const index = cart.products.indexOf(productOnCart);
@@ -81,8 +81,8 @@ export const removeFromCart = (event) => {
 
 // Extra: Increment button
 export const addFromCart = (event) => {
-    let id = Number(event.currentTarget.getAttribute('product-id'));   
-    let productOnCart = cart.products.find((product)=> product.id === id);
+    const id = Number(event.target.getAttribute('product-id'));   
+    const productOnCart = cart.products.find((product)=> product.id === id);
     addProductToCart(productOnCart);
     printCart(getCart(), getTotalPrice());
 }

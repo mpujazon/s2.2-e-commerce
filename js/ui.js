@@ -28,8 +28,6 @@ export const printCart = (cart, totalPrice) => {
         `;        
         cartList.appendChild(productRow);
     });
-    addDynamicEventListener('decrement-button', removeFromCart);
-    addDynamicEventListener('increment-button', addFromCart);
     totalPriceElement.innerHTML = totalPrice.toFixed(2);
 }
 
