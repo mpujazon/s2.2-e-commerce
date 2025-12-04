@@ -27,28 +27,6 @@ export const printCart = (container, localStorageCart, totalPriceElement, modifi
     });
     totalPriceElement.innerHTML = localStorageCart.totalPrice.toFixed(2);
 }
-/*
-export const printCheckoutSummary = (container, totalPriceSpan, cart)=>{
-    container.innerHTML = '';
-    cart.products?.forEach((product)=>{
-        const productRow = document.createElement('tr');
-        productRow.innerHTML = `
-            <tr>
-                <th scope="row" class="py-3 fw-semibold">${capitalizeFirstLetter(product.name)}</th>
-                <td class="py-3">$${(product.price)}</td>
-                <td class="py-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <span class="fw-bold">${product.quantity}</span>
-                    </div>
-                </td>
-                <td class="py-3 fw-semibold text-primary">$${(product.subtotalPrice).toFixed(2)}</td>
-            </tr>
-        `;        
-        container.appendChild(productRow);
-    });
-    totalPriceSpan.textContent = cart.totalPrice.toFixed(2);
-}
-*/
 
 const cartButtons = [...document.getElementsByClassName('cart-buttons')];
 
