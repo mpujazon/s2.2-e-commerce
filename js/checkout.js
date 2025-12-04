@@ -17,7 +17,7 @@ const validate = (e) => {
 	const fPassword = document.getElementById("fPassword");
 	const fPhone = document.getElementById("fPhone");
 
-	const lettersRegex = /^\p{L}+$/u;
+	const lettersRegex = /^[\p{L} \-']+$/u;
 	const lettersAndNumbers = /^\w+$/;
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	const phoneNumberRegex = /^\+?[1-9]\d{6,14}$/;
@@ -28,10 +28,10 @@ const validate = (e) => {
 		const value = inputElement.value.trim();
 		const isValid = hasMinimumLength(value) && validationFn(value);
 		if (!isValid){
-			inputElement.classList.add('is-invalid');
+			inputIsValidTooltip(inputElement, false)
 			return false;
 		}
-		inputElement.classList.remove('is-invalid');
+		inputIsValidTooltip(inputElement, true)
 		return true;
 	}
 
@@ -70,12 +70,26 @@ const validate = (e) => {
 		error++;
 	};
 
-	if(error>0){
-		alert("Please fill in all required fields.");
-	}else{
+	if(error===0){
+		resetForm();
 		alert("Form submitted successfully");
-		form.reset();
 	}
+}
+
+const inputIsValidTooltip = (inputElement, valid)=>{
+	if(valid){
+		inputElement.classList.remove('is-invalid');
+		inputElement.classList.add('is-valid');
+	}else{
+		inputElement.classList.remove('is-valid');
+		inputElement.classList.add('is-invalid');
+	}
+}
+
+const formInputs = [...document.getElementsByClassName('form-control')];
+const resetForm = () => {
+	formInputs.forEach((input)=>{input.classList.remove('is-valid')})
+	form.reset();
 }
 
 const form = document.querySelector('.form');
