@@ -20,6 +20,7 @@ const validate = (e) => {
 	const lettersRegex = /^\p{L}+$/u;
 	const lettersAndNumbers = /^\w+$/;
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const phoneNumberRegex = /^\+?[1-9]\d{6,14}$/;
 
 	const hasMinimumLength = (inputElement) => inputElement.value.length >= 3;
 
@@ -61,7 +62,7 @@ const validate = (e) => {
 		error++;
 	}
 	if(!validateField(fPhone, (phoneInput)=>
-		!isNaN(phoneInput.value)
+		phoneNumberRegex.test(phoneInput.value)
 	)){
 		error++;
 	};
