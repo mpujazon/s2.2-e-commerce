@@ -1,5 +1,3 @@
-import { capitalizeFirstLetter } from "./utils.js";
-
 const countProduct = document.getElementById('count_product');
 export const updateCartCount = (cartLength) => { if(countProduct !== null) countProduct.textContent = cartLength }
 
@@ -69,4 +67,8 @@ export const showProductAddedMessage = () => {
     setTimeout(() => {
         productMessageElement.classList.remove('show');
     }, 3000);
+}
+
+export const capitalizeFirstLetter = (val)=>  {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
